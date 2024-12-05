@@ -1,0 +1,4 @@
+jupyter
+google-cloud-aiplatform
+google-api-python-client
+jinja2
