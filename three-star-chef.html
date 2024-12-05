@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ZA:wght@100..400&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    .playwrite-za-100> {
+        font-family: "Playwrite ZA", cursive;
+        font-optical-sizing: auto;
+        font-weight: 100;
+        font-style: normal;
+    }
+</style>
+
+<body class="container playwrite-za-100">
+    <div class="col-sm d-flex justify-content-center p-5">
+        {% for recipe in recipes %}
+        <div class="card p-4 w-75">
+            <img src="../{{ recipe.recipe_img }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <div class="card-title h1">{{ recipe.recipe_name }}</div>
+                <div class="card-text">
+                    <p> {{ recipe.description or "N/A" }}</p>
+                    <p> <span class="fw-bold">Cooking Time</span>{{ recipe.cooking_time or "N/A" }}</p>
+                    <p> <span class="fw-bold">Servings:</span>{{ recipe.servings or "N/A" }}</p>
+                </div>
+            </div>
+            <div class="">
+                <h3 class="h3">Ingredients:</h3>
+                <ul class="list-group list-group-flush">
+                    {% for ingredient in recipe.ingredients %}
+                    <li class="list-group-item">{{ ingredient.quantity }} - {{ ingredient.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="mt-4">
+                <h3 class="h3">Steps:</h3>
+                <ol class="list-group list-group-numbered list-group-flush">
+                    {% for step in recipe.steps %}
+                    <li class="list-group-item">{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
